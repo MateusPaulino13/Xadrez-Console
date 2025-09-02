@@ -12,7 +12,7 @@ namespace Xadrez
     {
         public static void imprimirPartida(PartidaDeXadrez partida)
         {
-            ImprimirTabuleiro(partida.tab);
+            ImprimirTabuleiro(partida.Tab);
             Console.WriteLine();
             imprimirPecasCapturadas(partida);
             Console.WriteLine();
