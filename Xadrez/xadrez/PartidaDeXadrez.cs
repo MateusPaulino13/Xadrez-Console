@@ -59,8 +59,15 @@ namespace xadrez
             else 
                 xeque = false;
 
-            turno++;
-            mudaJogador();
+            if (testeXequeMate(Adversario(jogadorAtual)))
+            {
+                terminada = true;
+            }
+            else
+            {
+                turno++;
+                mudaJogador();
+            }
         }
 
         public void desfazMovimento(Posicao origem, Posicao destino, Peca pecaCapturada)
@@ -141,6 +148,34 @@ namespace xadrez
         private Cor Adversario(Cor cor)
         {
             return cor == Cor.Branca ? Cor.Preta : Cor.Branca;
+        }
+
+        public bool testeXequeMate(Cor cor)
+        {
+            if(!estaEmXeque(cor))
+                return false;
+
+            foreach (var p in pecasEmJogo(cor))
+            {
+                bool[,] mat = p.movimentosPossiveis();
+                for (int i = 0; i < tab.linhas; i++)
+                {
+                    for (int j = 0; j < tab.colunas; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Posicao origem = p.Posicao;
+                            Posicao destino = new Posicao(i, j);
+                            Peca pecaCapturada = executaMovimento(origem, destino);
+                            bool testeXeque = estaEmXeque(cor);
+                            desfazMovimento(origem, destino, pecaCapturada);
+                            if (!testeXeque)
+                                return false;
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public bool estaEmXeque(Cor cor)
