@@ -6,12 +6,12 @@ namespace Xadrez
     {
         public Rei(Cor cor, Tabuleiro tab) : base(cor, tab){}
 
-
         private bool podeMover(Posicao pos)
         {
             Peca p = Tab.peca(pos);
             return p == null || p.Cor != Cor;
         }
+
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[Tab.linhas, Tab.colunas];
