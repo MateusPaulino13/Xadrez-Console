@@ -9,7 +9,7 @@ namespace Xadrez
 
         public Rei(Cor cor, Tabuleiro tab, PartidaDeXadrez partida) : base(cor, tab)
         {
-            partida = partida;
+            this.partida = partida;
         }
 
         private bool podeMover(Posicao pos)
