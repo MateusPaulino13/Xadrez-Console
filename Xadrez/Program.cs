@@ -8,9 +8,11 @@ namespace Xadrez
         {
             Tabuleiro tab = new Tabuleiro(8, 8);
 
-            Tela.ImprimirTabuleiro(tab);
+            tab.colocarPeca(new Torre(Cor.Preta, tab), new Posicao(0, 0));
+            tab.colocarPeca(new Torre(Cor.Preta, tab), new Posicao(1, 3));
+            tab.colocarPeca(new Rei(Cor.Preta, tab), new Posicao(2, 4));
 
-            //Console.ReadLine();
+            Tela.ImprimirTabuleiro(tab);  
         }
     }
 }
